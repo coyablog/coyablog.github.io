@@ -1,0 +1,3523 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>&#127922; 跑團專用 - ▌文字跑團區</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://discordapp.com/assets/6c6374bad0b0b6d204d8d6dc4a18d820.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://discordapp.com/assets/e8acd7d9bf6207f99350ca9f9e23b168.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://discordapp.com/assets/3bdef1251a424500c1b3a78dea9b7e57.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://discordapp.com/assets/be0060dafb7a0e31d2a1ca17c0708636.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://discordapp.com/assets/8e12fb4f14d9c4592eb8ec9f22337b04.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    white-space: pre-wrap;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.spoiler {
+    border-radius: 3px;
+}
+
+.quote {
+    margin: 0.5em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment-thumbnail {
+    margin-top: 0.3em;
+    max-width: 50%;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="https://cdn.discordapp.com/icons/707086362188316703/68e03067b45ee0de58914b752aa1df2d.png" alt="Guild icon" />
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">&#127922; 跑團專用</div>
+        <div class="preamble__entry">▌文字跑團區</div>
+
+            <div class="preamble__entry preamble__entry--small">文字團專區。</div>
+
+    </div>
+</div>
+
+<div class="chatlog">
+    <div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 02:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="708389162772070440" id="message-708389162772070440">
+                <div class="chatlog__content">
+                    <span class="markdown">今天是假日，維肖坐在家中悠閒啜飲著咖啡，工作用的手機突然響了起來。
+來電顯示「加納 詩音」，她是你的其中一位患者，目前正為失眠症所苦。</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 02:46 AM</span>
+
+            <div class="chatlog__message " data-message-id="708389354380197981" id="message-708389354380197981">
+                <div class="chatlog__content">
+                    <span class="markdown">維肖接起了手機</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 02:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="708389545728540835" id="message-708389545728540835">
+                <div class="chatlog__content">
+                    <span class="markdown">傳出少女細小的聲音：「維肖醫生……好久不見，您現在有空嗎？」</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 02:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="708389645649707077" id="message-708389645649707077">
+                <div class="chatlog__content">
+                    <span class="markdown">有的 請問什麼事呢?</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 02:49 AM</span>
+
+            <div class="chatlog__message " data-message-id="708390052518166549" id="message-708390052518166549">
+                <div class="chatlog__content">
+                    <span class="markdown">少女沉默片刻，繼續說道：「那個……有一件不得不向您說明的事情。能不能跟您約在XX咖啡廳見面呢？我在靠窗的位置等您。」</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 02:49 AM</span>
+
+            <div class="chatlog__message " data-message-id="708390225411571772" id="message-708390225411571772">
+                <div class="chatlog__content">
+                    <span class="markdown">好的 我稍後就到</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 02:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="708390798978187342" id="message-708390798978187342">
+                <div class="chatlog__content">
+                    <span class="markdown">你來到了咖啡廳，果然看見詩音坐在靠窗的位置等你。
+
+你們兩人各點了一杯飲料後，詩音卻閉上雙眼、遲遲不願告訴你想說的事。
+
+一段時間後，詩音不知為何明顯緊張了起來；你感到一股異樣的睡意襲來，就這樣沉沉進入了夢鄉……
+
+※
+
+醒來的時候，你身在一間雜亂又骯髒的房間裡。
+
+四周異常地安靜，一點聲音都沒有；頭頂上的燈泡早就燒壞了，陽光透過窗戶照進室內，為窄小的空間提供了光源。
+
+<strong>請先骰幸運，決定維肖身上物品的去留。</strong></span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 02:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="708391001592430673" id="message-708391001592430673">
+                <div class="chatlog__content">
+                    <span class="markdown">!roll 1d100&lt;60</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204777316621090816/a98b0ffa5f0580c62d795d4f21a08c62.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="RPBot#4161" data-user-id="204777316621090816" style="color: #FF35A4">BOT ➲ RPBot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-May-20 02:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="708391002402062487" id="message-708391002402062487">
+                <div class="chatlog__content">
+                    <span class="markdown"><span class="mention" title="weishiau#5350">@weishiau</span> has <strong>succeeded</strong>. (Rolled 40,  less than 60)</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 02:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="708391139853467730" id="message-708391139853467730">
+                <div class="chatlog__content">
+                    <span class="markdown">你確認了一下，身上的物品都還在。
+
+可以開始調查了：</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 02:54 AM</span>
+
+            <div class="chatlog__message " data-message-id="708391275816157286" id="message-708391275816157286">
+                <div class="chatlog__content">
+                    <span class="markdown">確認一下身處何處</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 02:54 AM</span>
+
+            <div class="chatlog__message " data-message-id="708391423761973322" id="message-708391423761973322">
+                <div class="chatlog__content">
+                    <span class="markdown">這是一間窄小的房間，角落堆滿了垃圾袋，中央鋪著破舊的被褥，窗邊堆疊著幾個紙箱，除此以外沒有其他家具了。</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 02:55 AM</span>
+
+            <div class="chatlog__message " data-message-id="708391536076783796" id="message-708391536076783796">
+                <div class="chatlog__content">
+                    <span class="markdown">看看窗戶</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 02:55 AM</span>
+
+            <div class="chatlog__message " data-message-id="708391648140460103" id="message-708391648140460103">
+                <div class="chatlog__content">
+                    <span class="markdown">陽光很刺眼，窗戶緊閉著，完全打不開。
+
+<strong>請骰偵查</strong></span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 02:57 AM</span>
+
+            <div class="chatlog__message " data-message-id="708392055566499883" id="message-708392055566499883">
+                <div class="chatlog__content">
+                    <span class="markdown">!roll 1d100&lt;25</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204777316621090816/a98b0ffa5f0580c62d795d4f21a08c62.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="RPBot#4161" data-user-id="204777316621090816" style="color: #FF35A4">BOT ➲ RPBot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-May-20 02:57 AM</span>
+
+            <div class="chatlog__message " data-message-id="708392057701662750" id="message-708392057701662750">
+                <div class="chatlog__content">
+                    <span class="markdown"><span class="mention" title="weishiau#5350">@weishiau</span> has <strong>failed</strong>. (Rolled 64, not less than 25)</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 02:58 AM</span>
+
+            <div class="chatlog__message " data-message-id="708392383238111343" id="message-708392383238111343">
+                <div class="chatlog__content">
+                    <span class="markdown">外頭的陽光太刺眼了，你什麼都沒看見。</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 02:59 AM</span>
+
+            <div class="chatlog__message " data-message-id="708392531800490044" id="message-708392531800490044">
+                <div class="chatlog__content">
+                    <span class="markdown">翻看看垃圾跟紙箱中有什麼可用的</span>
+
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708392576201392168" id="message-708392576201392168">
+                <div class="chatlog__content">
+                    <span class="markdown">!roll 1d100&lt;25</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204777316621090816/a98b0ffa5f0580c62d795d4f21a08c62.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="RPBot#4161" data-user-id="204777316621090816" style="color: #FF35A4">BOT ➲ RPBot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-May-20 02:59 AM</span>
+
+            <div class="chatlog__message " data-message-id="708392576641794108" id="message-708392576641794108">
+                <div class="chatlog__content">
+                    <span class="markdown"><span class="mention" title="weishiau#5350">@weishiau</span> has <strong>failed</strong>. (Rolled 61, not less than 25)</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="708392930167095346" id="message-708392930167095346">
+                <div class="chatlog__content">
+                    <span class="markdown">垃圾袋裡堆滿了各種生活廢棄物，有許多泡麵封膜和免洗餐具。從中能找到使用過的衛生棉。</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:03 AM</span>
+
+            <div class="chatlog__message " data-message-id="708393566677893161" id="message-708393566677893161">
+                <div class="chatlog__content">
+                    <span class="markdown">嘔 翻找紙箱</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:03 AM</span>
+
+            <div class="chatlog__message " data-message-id="708393658898186330" id="message-708393658898186330">
+                <div class="chatlog__content">
+                    <span class="markdown">紙箱上放著幾本作業本，筆跡稚嫩，封面上寫著「1年A班 加納詩音」幾個字。
+筆記本非常破舊、封面貼滿了膠帶，看起來像曾被撕碎又拚回來過。</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:04 AM</span>
+
+            <div class="chatlog__message " data-message-id="708393926423478292" id="message-708393926423478292">
+                <div class="chatlog__content">
+                    <span class="markdown">數一數有幾本</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="708394100021526538" id="message-708394100021526538">
+                <div class="chatlog__content">
+                    <span class="markdown">四、五本左右，都是常見科目的作業本。</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="708394218820861982" id="message-708394218820861982">
+                <div class="chatlog__content">
+                    <span class="markdown">翻查第一本</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:06 AM</span>
+
+            <div class="chatlog__message " data-message-id="708394436073226281" id="message-708394436073226281">
+                <div class="chatlog__content">
+                    <span class="markdown">第一本裡面寫著你看不懂的數學公式，後半部分的紙張都被撕去了。</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:07 AM</span>
+
+            <div class="chatlog__message " data-message-id="708394682522009641" id="message-708394682522009641">
+                <div class="chatlog__content">
+                    <span class="markdown">翻查第二本</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:08 AM</span>
+
+            <div class="chatlog__message " data-message-id="708394887497777243" id="message-708394887497777243">
+                <div class="chatlog__content">
+                    <span class="markdown">第二本寫著你勉強能辨認的文字，但那些文字拼起來你又看不懂了。</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:09 AM</span>
+
+            <div class="chatlog__message " data-message-id="708395047745486972" id="message-708395047745486972">
+                <div class="chatlog__content">
+                    <span class="markdown">翻查第三本</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:12 AM</span>
+
+            <div class="chatlog__message " data-message-id="708395984270655639" id="message-708395984270655639">
+                <div class="chatlog__content">
+                    <span class="markdown">第三本上面仍是你看不懂的資訊，你的智商似乎無法理解這些東西，繼續翻看也沒有意義了。</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:13 AM</span>
+
+            <div class="chatlog__message " data-message-id="708396256170606734" id="message-708396256170606734">
+                <div class="chatlog__content">
+                    <span class="markdown">把本子丟進垃圾袋 查看牆壁</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:16 AM</span>
+
+            <div class="chatlog__message " data-message-id="708396854437740574" id="message-708396854437740574">
+                <div class="chatlog__content">
+                    <span class="markdown">你生氣地將本子丟進垃圾袋裡，轉頭調查牆壁。
+
+牆壁上有大片油漆剝落的痕跡，看起來年久失修，除此之外沒什麼特別的東西。</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:16 AM</span>
+
+            <div class="chatlog__message " data-message-id="708396980543553597" id="message-708396980543553597">
+                <div class="chatlog__content">
+                    <span class="markdown">看看有沒有離開房間的方法</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:17 AM</span>
+
+            <div class="chatlog__message " data-message-id="708397081349324860" id="message-708397081349324860">
+                <div class="chatlog__content">
+                    <span class="markdown">在你身後有一道拉門。</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:17 AM</span>
+
+            <div class="chatlog__message " data-message-id="708397256654585978" id="message-708397256654585978">
+                <div class="chatlog__content">
+                    <span class="markdown">拉拉拉拉拉開</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:18 AM</span>
+
+            <div class="chatlog__message " data-message-id="708397415283032104" id="message-708397415283032104">
+                <div class="chatlog__content">
+                    <span class="markdown">打開拉門之後，看見的並不是預想中的走道。
+
+你來到了一間陌生的房屋內。室內非常昏暗，還能聽見外頭呼嘯而過的引擎聲。
+
+拉門在你離開後就消失了。你所在的地方是玄關處，身後是生鏽的大門。
+
+屋內非常雜亂、堆滿了空酒瓶和垃圾袋，甚至能看見蟑螂在其中爬行。
+
+走廊深處的房間內，傳來有人在爭執的聲音。</span>
+
+                        <span class="chatlog__edited-timestamp" title="09-May-20 03:43 AM">(edited)</span>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="708397728719437835" id="message-708397728719437835">
+                <div class="chatlog__content">
+                    <span class="markdown">偷偷摸摸靠過去聽 他們在爭執什麼</span>
+
+                        <span class="chatlog__edited-timestamp" title="09-May-20 03:21 AM">(edited)</span>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="708398346594812075" id="message-708398346594812075">
+                <div class="chatlog__content">
+                    <span class="markdown">你原本只想偷偷靠過去聽，但拉門並沒有關上，能輕易看見裡面的景象。
+
+室內沒有開燈，清冷的月光灑落在地上，勾勒出地板上兩人糾纏在一起的身影。
+
+那是一個渾身酒氣的男人、和一名衣衫凌亂的女孩。即使外表與現在相比稚嫩許多，你仍一眼就能分辨出被男人壓在身下的女孩，正是國中時期的詩音。
+
+男人口吐穢言、狠狠拉扯著詩音的頭髮，詩音哭叫著求對方停下，即使不用掀開棉被、都能知道詩音此時正遭受著怎樣的對待。
+
+你聽見詩音叫對方「爸爸」。
+
+……這正是詩音過去經歷過的悲劇。
+
+看見了這樣震撼且哀傷的景象，<strong>SAN Check 1/1d3</strong></span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="708399026185175050" id="message-708399026185175050">
+                <div class="chatlog__content">
+                    <span class="markdown">!roll 1d100&lt;30</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204777316621090816/a98b0ffa5f0580c62d795d4f21a08c62.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="RPBot#4161" data-user-id="204777316621090816" style="color: #FF35A4">BOT ➲ RPBot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-May-20 03:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="708399026768314430" id="message-708399026768314430">
+                <div class="chatlog__content">
+                    <span class="markdown"><span class="mention" title="weishiau#5350">@weishiau</span> has <strong>failed</strong>. (Rolled 36, not less than 30)</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:25 AM</span>
+
+            <div class="chatlog__message " data-message-id="708399165436067871" id="message-708399165436067871">
+                <div class="chatlog__content">
+                    <span class="markdown">!roll 1d3</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204777316621090816/a98b0ffa5f0580c62d795d4f21a08c62.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="RPBot#4161" data-user-id="204777316621090816" style="color: #FF35A4">BOT ➲ RPBot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-May-20 03:25 AM</span>
+
+            <div class="chatlog__message " data-message-id="708399165910286366" id="message-708399165910286366">
+                <div class="chatlog__content">
+                    <span class="markdown"><span class="mention" title="weishiau#5350">@weishiau</span> rolled <strong>2</strong>.</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="708399392423673918" id="message-708399392423673918">
+                <div class="chatlog__content">
+                    <span class="markdown">查看走廊</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="708399542755917895" id="message-708399542755917895">
+                <div class="chatlog__content">
+                    <span class="markdown">走廊上堆滿了空酒瓶和垃圾袋。</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="708399591187546215" id="message-708399591187546215">
+                <div class="chatlog__content">
+                    <span class="markdown">看看有沒有其他房間</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="708399753951445023" id="message-708399753951445023">
+                <div class="chatlog__content">
+                    <span class="markdown">雖然還有其他房間，但拉門皆被封死，沒辦法打開。</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="708399854216544327" id="message-708399854216544327">
+                <div class="chatlog__content">
+                    <span class="markdown">進入爭執的房間試圖制止男人</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="708400110182072423" id="message-708400110182072423">
+                <div class="chatlog__content">
+                    <span class="markdown">你進入房間，想制止男人繼續對詩音施暴，但你發現自己的身體呈現半透明狀、直接穿過了他們。
+
+你無法對他們造成任何影響，只能靜靜看著已發生過的悲劇在面前不斷重複上演。</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="708400259113418832" id="message-708400259113418832">
+                <div class="chatlog__content">
+                    <span class="markdown">繼續看</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:31 AM</span>
+
+            <div class="chatlog__message " data-message-id="708400598038478916" id="message-708400598038478916">
+                <div class="chatlog__content">
+                    <span class="markdown">在你面前的兩人像壞掉的錄影帶一樣，只是不斷重複著同樣的情景。</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:31 AM</span>
+
+            <div class="chatlog__message " data-message-id="708400716011667517" id="message-708400716011667517">
+                <div class="chatlog__content">
+                    <span class="markdown">理解這是某種幻境一類的事 嘗試清醒過來</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="708400917401174019" id="message-708400917401174019">
+                <div class="chatlog__content">
+                    <span class="markdown">你雖然察覺到此時身處的地方並非現實，但不管再怎麼努力，你還是無法清醒。</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="708401001065087069" id="message-708401001065087069">
+                <div class="chatlog__content">
+                    <span class="markdown">嘗試睡覺</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="708401128458420294" id="message-708401128458420294">
+                <div class="chatlog__content">
+                    <span class="markdown">你睡了，然後什麼都沒發生。</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="708404177763827745" id="message-708404177763827745">
+                <div class="chatlog__content">
+                    <span class="markdown">看看還有哪裡能去</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="708404299817811978" id="message-708404299817811978">
+                <div class="chatlog__content">
+                    <span class="markdown">玄關處還有一扇生鏽的大門。</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:46 AM</span>
+
+            <div class="chatlog__message " data-message-id="708404416327319595" id="message-708404416327319595">
+                <div class="chatlog__content">
+                    <span class="markdown">摸一下</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:48 AM</span>
+
+            <div class="chatlog__message " data-message-id="708404944214032424" id="message-708404944214032424">
+                <div class="chatlog__content">
+                    <span class="markdown">你只是輕輕碰了一下，大門就被你推開了。
+
+你來到一條小巷子內，身後是一間破舊的小公寓。大門在你身後闔上，你看見兩名主婦在轉角的垃圾場旁閒聊。</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:48 AM</span>
+
+            <div class="chatlog__message " data-message-id="708405110279241858" id="message-708405110279241858">
+                <div class="chatlog__content">
+                    <span class="markdown">尾隨並竊聽</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:49 AM</span>
+
+            <div class="chatlog__message " data-message-id="708405312260014160" id="message-708405312260014160">
+                <div class="chatlog__content">
+                    <span class="markdown"><strong>請骰聆聽</strong> <span class="pre pre--inline">!roll 1d100&lt;50</span></span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:49 AM</span>
+
+            <div class="chatlog__message " data-message-id="708405350520455178" id="message-708405350520455178">
+                <div class="chatlog__content">
+                    <span class="markdown">!roll 1d100&lt;50</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204777316621090816/a98b0ffa5f0580c62d795d4f21a08c62.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="RPBot#4161" data-user-id="204777316621090816" style="color: #FF35A4">BOT ➲ RPBot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-May-20 03:49 AM</span>
+
+            <div class="chatlog__message " data-message-id="708405351019708527" id="message-708405351019708527">
+                <div class="chatlog__content">
+                    <span class="markdown"><span class="mention" title="weishiau#5350">@weishiau</span> has <strong>failed</strong>. (Rolled 89, not less than 50)</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="708405908459225139" id="message-708405908459225139">
+                <div class="chatlog__content">
+                    <span class="markdown">孤注一擲</span>
+
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708405999551119474" id="message-708405999551119474">
+                <div class="chatlog__content">
+                    <span class="markdown">!roll 1d100&lt;50</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204777316621090816/a98b0ffa5f0580c62d795d4f21a08c62.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="RPBot#4161" data-user-id="204777316621090816" style="color: #FF35A4">BOT ➲ RPBot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-May-20 03:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="708406000604151839" id="message-708406000604151839">
+                <div class="chatlog__content">
+                    <span class="markdown"><span class="mention" title="weishiau#5350">@weishiau</span> has <strong>failed</strong>. (Rolled 52, not less than 50)</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:55 AM</span>
+
+            <div class="chatlog__message " data-message-id="708406767855599636" id="message-708406767855599636">
+                <div class="chatlog__content">
+                    <span class="markdown">啊旁白哩</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:55 AM</span>
+
+            <div class="chatlog__message " data-message-id="708406837166342175" id="message-708406837166342175">
+                <div class="chatlog__content">
+                    <span class="markdown">你試著尾隨並竊聽主婦們的談話內容，但似乎是靠得太近，你的舉動被她們抓個正著。
+
+無論你怎麼解釋，主婦們都聽不進去，最後主婦們生氣地離開，留下你可憐兮兮地站在垃圾場裡。</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:56 AM</span>
+
+            <div class="chatlog__message " data-message-id="708406992972283905" id="message-708406992972283905">
+                <div class="chatlog__content">
+                    <span class="markdown">查看周圍有什麼事可做</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:58 AM</span>
+
+            <div class="chatlog__message " data-message-id="708407484813148244" id="message-708407484813148244">
+                <div class="chatlog__content">
+                    <span class="markdown">主婦走了之後，這條小巷非常安靜，連蟲鳴鳥叫都聽不到。
+
+試著想往前再走幾步時，發現面前有道透明的屏障，似乎不能再前進了。</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:58 AM</span>
+
+            <div class="chatlog__message " data-message-id="708407602144346162" id="message-708407602144346162">
+                <div class="chatlog__content">
+                    <span class="markdown">走回公寓</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 03:59 AM</span>
+
+            <div class="chatlog__message " data-message-id="708407748420829223" id="message-708407748420829223">
+                <div class="chatlog__content">
+                    <span class="markdown">推開公寓大門，你進入了一個非常狹小的空間。
+
+四面都是牆壁，詩音的父親躺在地板中央，他渾身散發酒氣、看起來喝得爛醉。
+
+而此時你的手中，握著一把鋒利的小刀。</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:02 AM</span>
+
+            <div class="chatlog__message " data-message-id="708408545074479124" id="message-708408545074479124">
+                <div class="chatlog__content">
+                    <span class="markdown">拿刀切他下路</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:04 AM</span>
+
+            <div class="chatlog__message " data-message-id="708408917184741376" id="message-708408917184741376">
+                <div class="chatlog__content">
+                    <span class="markdown"><strong>SC 0/1d2</strong> <span class="pre pre--inline">!roll 1d100&lt;28</span></span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="708409156864049295" id="message-708409156864049295">
+                <div class="chatlog__content">
+                    <span class="markdown">!roll 1d100&lt;28</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204777316621090816/a98b0ffa5f0580c62d795d4f21a08c62.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="RPBot#4161" data-user-id="204777316621090816" style="color: #FF35A4">BOT ➲ RPBot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-May-20 04:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="708409157409177621" id="message-708409157409177621">
+                <div class="chatlog__content">
+                    <span class="markdown"><span class="mention" title="weishiau#5350">@weishiau</span> has <strong>failed</strong>. (Rolled 65, not less than 28)</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="708409217370816602" id="message-708409217370816602">
+                <div class="chatlog__content">
+                    <span class="markdown"><span class="pre pre--inline">!roll 1d2</span></span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="708409242700480593" id="message-708409242700480593">
+                <div class="chatlog__content">
+                    <span class="markdown">!roll 1d2</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204777316621090816/a98b0ffa5f0580c62d795d4f21a08c62.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="RPBot#4161" data-user-id="204777316621090816" style="color: #FF35A4">BOT ➲ RPBot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-May-20 04:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="708409243111260220" id="message-708409243111260220">
+                <div class="chatlog__content">
+                    <span class="markdown"><span class="mention" title="weishiau#5350">@weishiau</span> rolled <strong>2</strong>.</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:07 AM</span>
+
+            <div class="chatlog__message " data-message-id="708409713393664132" id="message-708409713393664132">
+                <div class="chatlog__content">
+                    <span class="markdown">你脫下男人的褲子，用小刀割下了他的生殖器。
+
+鮮血自他的下體不斷湧出，雖然知道面前的男人並不是什麼好東西，看見這樣的景象，仍讓你受到了不少刺激。</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:07 AM</span>
+
+            <div class="chatlog__message " data-message-id="708409836232245258" id="message-708409836232245258">
+                <div class="chatlog__content">
+                    <span class="markdown">確認還有無呼吸</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:07 AM</span>
+
+            <div class="chatlog__message " data-message-id="708409887129993326" id="message-708409887129993326">
+                <div class="chatlog__content">
+                    <span class="markdown">男人呼吸平穩。</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:08 AM</span>
+
+            <div class="chatlog__message " data-message-id="708409914661273602" id="message-708409914661273602">
+                <div class="chatlog__content">
+                    <span class="markdown">哇靠</span>
+
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708410002729074708" id="message-708410002729074708">
+                <div class="chatlog__content">
+                    <span class="markdown">看看房間內還有什麼事能做</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:08 AM</span>
+
+            <div class="chatlog__message " data-message-id="708410121935388712" id="message-708410121935388712">
+                <div class="chatlog__content">
+                    <span class="markdown">房內空無一物，只有拿著小刀的你，和面前的男人。</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:09 AM</span>
+
+            <div class="chatlog__message " data-message-id="708410244711186564" id="message-708410244711186564">
+                <div class="chatlog__content">
+                    <span class="markdown">捅他心臟</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:10 AM</span>
+
+            <div class="chatlog__message " data-message-id="708410540405424219" id="message-708410540405424219">
+                <div class="chatlog__content">
+                    <span class="markdown"><strong>SC 0/1d3</strong> <span class="pre pre--inline">!roll 1d100&lt;26</span></span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:10 AM</span>
+
+            <div class="chatlog__message " data-message-id="708410587931213905" id="message-708410587931213905">
+                <div class="chatlog__content">
+                    <span class="markdown">!roll 1d100&lt;26</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204777316621090816/a98b0ffa5f0580c62d795d4f21a08c62.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="RPBot#4161" data-user-id="204777316621090816" style="color: #FF35A4">BOT ➲ RPBot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-May-20 04:10 AM</span>
+
+            <div class="chatlog__message " data-message-id="708410588723937330" id="message-708410588723937330">
+                <div class="chatlog__content">
+                    <span class="markdown"><span class="mention" title="weishiau#5350">@weishiau</span> has <strong>succeeded</strong>. (Rolled 6,  less than 26)</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:12 AM</span>
+
+            <div class="chatlog__message " data-message-id="708411081445474354" id="message-708411081445474354">
+                <div class="chatlog__content">
+                    <span class="markdown">你用小刀刺向男人的心臟，鮮血在你面前噴湧而出，你的身上沾滿了腥臭的血液。你親身感受到一個活生生的生命因你而消逝，也許是因為知曉這男人曾對自己的女兒做過什麼，殺死他並沒有對你的精神造成太大影響。
+
+男人的心臟完全停止跳動，狹小的空間越來越暗；即使沒有光源，你也能看見一位膚色黝黑的瘦高男性站在你身前，朝你伸出了手。
+
+……你不受控制地握住了他的手。
+
+接著一陣天旋地轉，再度睜開雙眼時，你來到了現在詩音與母親同住的家。
+
+※
+
+這裡是詩音的房間，她就坐在床上等著你。
+
+詩音側過頭看向你：「我的過去，你都知道了嗎？」</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:14 AM</span>
+
+            <div class="chatlog__message " data-message-id="708411418327777300" id="message-708411418327777300">
+                <div class="chatlog__content">
+                    <span class="markdown">我了解了...</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:14 AM</span>
+
+            <div class="chatlog__message " data-message-id="708411502368915586" id="message-708411502368915586">
+                <div class="chatlog__content">
+                    <span class="markdown">詩音眼神暗了下來，「是嗎……你都知道了啊。但他已經答應我了，這一切馬上就會過去的。」
+
+她朝你露出美麗的微笑：「──那麼，你願意代替我，承受這些痛苦嗎？」</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="708411685798412409" id="message-708411685798412409">
+                <div class="chatlog__content">
+                    <span class="markdown">你說什麼?</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="708411825187979284" id="message-708411825187979284">
+                <div class="chatlog__content">
+                    <span class="markdown">「你願意和我交換身體，成為『我』嗎？」</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:16 AM</span>
+
+            <div class="chatlog__message " data-message-id="708411966296817695" id="message-708411966296817695">
+                <div class="chatlog__content">
+                    <span class="markdown">你在說什麼傻話</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:16 AM</span>
+
+            <div class="chatlog__message " data-message-id="708412142885273651" id="message-708412142885273651">
+                <div class="chatlog__content">
+                    <span class="markdown">「我是說真的。既然你都知道我的過去了，為什麼不明白我在說什麼呢？」</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:17 AM</span>
+
+            <div class="chatlog__message " data-message-id="708412374712844359" id="message-708412374712844359">
+                <div class="chatlog__content">
+                    <span class="markdown">當然不明白 你到底在說些什麼</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:18 AM</span>
+
+            <div class="chatlog__message " data-message-id="708412462294237274" id="message-708412462294237274">
+                <div class="chatlog__content">
+                    <span class="markdown">「……你騙了我？」</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:18 AM</span>
+
+            <div class="chatlog__message " data-message-id="708412656616341534" id="message-708412656616341534">
+                <div class="chatlog__content">
+                    <span class="markdown">不是 你聽我說 我只是知道你的過去而已</span>
+
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708412754217664574" id="message-708412754217664574">
+                <div class="chatlog__content">
+                    <span class="markdown">交換身體這種事 想想都是不可能的</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="708413111492804619" id="message-708413111492804619">
+                <div class="chatlog__content">
+                    <span class="markdown">詩音從懷中掏出小刀朝你襲來，「這樣啊……那就請你去死吧！」
+
+戰鬥順序：維肖→詩音→維肖（重複），請決定維肖行動：</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="708413929696526466" id="message-708413929696526466">
+                <div class="chatlog__content">
+                    <span class="markdown">腹擊交</span>
+
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708413942065791048" id="message-708413942065791048">
+                <div class="chatlog__content">
+                    <span class="markdown">!roll 1d100&lt;25</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204777316621090816/a98b0ffa5f0580c62d795d4f21a08c62.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="RPBot#4161" data-user-id="204777316621090816" style="color: #FF35A4">BOT ➲ RPBot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-May-20 04:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="708413943298654302" id="message-708413943298654302">
+                <div class="chatlog__content">
+                    <span class="markdown"><span class="mention" title="weishiau#5350">@weishiau</span> has <strong>failed</strong>. (Rolled 93, not less than 25)</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="708414465636302963" id="message-708414465636302963">
+                <div class="chatlog__content">
+                    <span class="markdown">你嘗試對詩音使用腹擊交，詩音側身扭過，你一拳打在了地上。
+
+詩音：鬥毆(小刀)</span>
+
+                        <span class="chatlog__edited-timestamp" title="09-May-20 04:26 AM">(edited)</span>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708414492572385281" id="message-708414492572385281">
+                <div class="chatlog__content">
+                    <span class="markdown">!roll 1d100&lt;55</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204777316621090816/a98b0ffa5f0580c62d795d4f21a08c62.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="RPBot#4161" data-user-id="204777316621090816" style="color: #FF35A4">BOT ➲ RPBot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-May-20 04:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="708414493243474001" id="message-708414493243474001">
+                <div class="chatlog__content">
+                    <span class="markdown"><span class="mention" title="Coyablog#5463">@Keeper ➲ 伊泉</span> has <strong>succeeded</strong>. (Rolled 23,  less than 55)</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="708414658805235816" id="message-708414658805235816">
+                <div class="chatlog__content">
+                    <span class="markdown">!roll 1d4-1</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204777316621090816/a98b0ffa5f0580c62d795d4f21a08c62.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="RPBot#4161" data-user-id="204777316621090816" style="color: #FF35A4">BOT ➲ RPBot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-May-20 04:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="708414661170692128" id="message-708414661170692128">
+                <div class="chatlog__content">
+                    <span class="markdown"><span class="mention" title="Coyablog#5463">@Keeper ➲ 伊泉</span> rolled <strong>0</strong>. (1,   -1)</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="708414821267275837" id="message-708414821267275837">
+                <div class="chatlog__content">
+                    <span class="markdown">詩音用小刀回擊，剛好擦破你肩膀的衣服，沒有造成傷害。</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="708414904633393212" id="message-708414904633393212">
+                <div class="chatlog__content">
+                    <span class="markdown">!roll 1d100&lt;25</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204777316621090816/a98b0ffa5f0580c62d795d4f21a08c62.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="RPBot#4161" data-user-id="204777316621090816" style="color: #FF35A4">BOT ➲ RPBot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-May-20 04:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="708414905069469727" id="message-708414905069469727">
+                <div class="chatlog__content">
+                    <span class="markdown"><span class="mention" title="weishiau#5350">@weishiau</span> has <strong>failed</strong>. (Rolled 28, not less than 25)</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="708415260796780564" id="message-708415260796780564">
+                <div class="chatlog__content">
+                    <span class="markdown">你再度嘗試攻擊詩音，又被她躲過了。
+
+詩音：鬥毆(小刀)</span>
+
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708415267201613984" id="message-708415267201613984">
+                <div class="chatlog__content">
+                    <span class="markdown">!roll 1d100&lt;55</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204777316621090816/a98b0ffa5f0580c62d795d4f21a08c62.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="RPBot#4161" data-user-id="204777316621090816" style="color: #FF35A4">BOT ➲ RPBot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-May-20 04:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="708415267470049353" id="message-708415267470049353">
+                <div class="chatlog__content">
+                    <span class="markdown"><span class="mention" title="Coyablog#5463">@Keeper ➲ 伊泉</span> has <strong>succeeded</strong>. (Rolled 34,  less than 55)</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="708415295508971690" id="message-708415295508971690">
+                <div class="chatlog__content">
+                    <span class="markdown">!roll 1d4-1</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204777316621090816/a98b0ffa5f0580c62d795d4f21a08c62.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="RPBot#4161" data-user-id="204777316621090816" style="color: #FF35A4">BOT ➲ RPBot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-May-20 04:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="708415296029065220" id="message-708415296029065220">
+                <div class="chatlog__content">
+                    <span class="markdown"><span class="mention" title="Coyablog#5463">@Keeper ➲ 伊泉</span> rolled <strong>0</strong>. (1,   -1)</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="708415407987359814" id="message-708415407987359814">
+                <div class="chatlog__content">
+                    <span class="markdown">詩音用小刀回擊，又擦破你側腹的衣服，沒有造成傷害。</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="708415463595573250" id="message-708415463595573250">
+                <div class="chatlog__content">
+                    <span class="markdown">!roll 1d100&lt;12</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204777316621090816/a98b0ffa5f0580c62d795d4f21a08c62.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="RPBot#4161" data-user-id="204777316621090816" style="color: #FF35A4">BOT ➲ RPBot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-May-20 04:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="708415464648474644" id="message-708415464648474644">
+                <div class="chatlog__content">
+                    <span class="markdown"><span class="mention" title="weishiau#5350">@weishiau</span> has <strong>failed</strong>. (Rolled 27, not less than 12)</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="708416183057252415" id="message-708416183057252415">
+                <div class="chatlog__content">
+                    <span class="markdown">!roll 1d100&lt;40</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204777316621090816/a98b0ffa5f0580c62d795d4f21a08c62.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="RPBot#4161" data-user-id="204777316621090816" style="color: #FF35A4">BOT ➲ RPBot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-May-20 04:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="708416183707107449" id="message-708416183707107449">
+                <div class="chatlog__content">
+                    <span class="markdown"><span class="mention" title="weishiau#5350">@weishiau</span> has <strong>succeeded</strong>. (Rolled 33,  less than 40)</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="708416327072743424" id="message-708416327072743424">
+                <div class="chatlog__content">
+                    <span class="markdown">!roll 1d100&lt;30</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204777316621090816/a98b0ffa5f0580c62d795d4f21a08c62.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="RPBot#4161" data-user-id="204777316621090816" style="color: #FF35A4">BOT ➲ RPBot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-May-20 04:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="708416327139983443" id="message-708416327139983443">
+                <div class="chatlog__content">
+                    <span class="markdown"><span class="mention" title="Coyablog#5463">@Keeper ➲ 伊泉</span> has <strong>failed</strong>. (Rolled 44, not less than 30)</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:35 AM</span>
+
+            <div class="chatlog__message " data-message-id="708416893266034688" id="message-708416893266034688">
+                <div class="chatlog__content">
+                    <span class="markdown">你的攻擊都打偏了，想試著直接奪刀，經過一陣子的扭打後，成功從詩音手上搶下小刀。
+
+詩音失去了小刀，開始用空手毆打你。
+
+詩音：鬥毆(空手)</span>
+
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708416897481179204" id="message-708416897481179204">
+                <div class="chatlog__content">
+                    <span class="markdown">!roll 1d100&lt;25</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204777316621090816/a98b0ffa5f0580c62d795d4f21a08c62.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="RPBot#4161" data-user-id="204777316621090816" style="color: #FF35A4">BOT ➲ RPBot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-May-20 04:35 AM</span>
+
+            <div class="chatlog__message " data-message-id="708416898030633040" id="message-708416898030633040">
+                <div class="chatlog__content">
+                    <span class="markdown"><span class="mention" title="Coyablog#5463">@Keeper ➲ 伊泉</span> has <strong>failed</strong>. (Rolled 62, not less than 25)</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:36 AM</span>
+
+            <div class="chatlog__message " data-message-id="708417006973616158" id="message-708417006973616158">
+                <div class="chatlog__content">
+                    <span class="markdown">纖弱的拳頭沒有對你造成任何傷害。</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="708417700917018725" id="message-708417700917018725">
+                <div class="chatlog__content">
+                    <span class="markdown">!roll 1d10+25</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204777316621090816/a98b0ffa5f0580c62d795d4f21a08c62.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="RPBot#4161" data-user-id="204777316621090816" style="color: #FF35A4">BOT ➲ RPBot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-May-20 04:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="708417701655347300" id="message-708417701655347300">
+                <div class="chatlog__content">
+                    <span class="markdown"><span class="mention" title="weishiau#5350">@weishiau</span> rolled <strong>27</strong>. (2,   25)</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="708418090718724106" id="message-708418090718724106">
+                <div class="chatlog__content">
+                    <span class="markdown">!roll 1d100&lt;25</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204777316621090816/a98b0ffa5f0580c62d795d4f21a08c62.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="RPBot#4161" data-user-id="204777316621090816" style="color: #FF35A4">BOT ➲ RPBot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-May-20 04:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="708418090999873587" id="message-708418090999873587">
+                <div class="chatlog__content">
+                    <span class="markdown"><span class="mention" title="weishiau#5350">@weishiau</span> has <strong>failed</strong>. (Rolled 49, not less than 25)</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="708418444344688721" id="message-708418444344688721">
+                <div class="chatlog__content">
+                    <span class="markdown">你搶走小刀後並沒有用來攻擊詩音，只是將小刀丟到遠處，繼續用拳頭毆打她……但並沒有造成傷害。
+
+詩音：鬥毆(空手)</span>
+
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708418451085197332" id="message-708418451085197332">
+                <div class="chatlog__content">
+                    <span class="markdown">!roll 1d100&lt;25</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204777316621090816/a98b0ffa5f0580c62d795d4f21a08c62.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="RPBot#4161" data-user-id="204777316621090816" style="color: #FF35A4">BOT ➲ RPBot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-May-20 04:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="708418451735314553" id="message-708418451735314553">
+                <div class="chatlog__content">
+                    <span class="markdown"><span class="mention" title="Coyablog#5463">@Keeper ➲ 伊泉</span> has <strong>succeeded</strong>. (Rolled 22,  less than 25)</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="708418560346685551" id="message-708418560346685551">
+                <div class="chatlog__content">
+                    <span class="markdown">!roll 1d3-1</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204777316621090816/a98b0ffa5f0580c62d795d4f21a08c62.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="RPBot#4161" data-user-id="204777316621090816" style="color: #FF35A4">BOT ➲ RPBot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-May-20 04:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="708418560715784242" id="message-708418560715784242">
+                <div class="chatlog__content">
+                    <span class="markdown"><span class="mention" title="Coyablog#5463">@Keeper ➲ 伊泉</span> rolled <strong>1</strong>. (2,   -1)</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="708418748674998342" id="message-708418748674998342">
+                <div class="chatlog__content">
+                    <span class="markdown">!roll 1d100&lt;25</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204777316621090816/a98b0ffa5f0580c62d795d4f21a08c62.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="RPBot#4161" data-user-id="204777316621090816" style="color: #FF35A4">BOT ➲ RPBot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-May-20 04:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="708418749635625020" id="message-708418749635625020">
+                <div class="chatlog__content">
+                    <span class="markdown"><span class="mention" title="weishiau#5350">@weishiau</span> has <strong>succeeded</strong>. (Rolled 6,  less than 25)</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:44 AM</span>
+
+            <div class="chatlog__message " data-message-id="708419024316399716" id="message-708419024316399716">
+                <div class="chatlog__content">
+                    <span class="markdown">!roll 1d3</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204777316621090816/a98b0ffa5f0580c62d795d4f21a08c62.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="RPBot#4161" data-user-id="204777316621090816" style="color: #FF35A4">BOT ➲ RPBot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-May-20 04:44 AM</span>
+
+            <div class="chatlog__message " data-message-id="708419024664395787" id="message-708419024664395787">
+                <div class="chatlog__content">
+                    <span class="markdown"><span class="mention" title="weishiau#5350">@weishiau</span> rolled <strong>2</strong>.</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:46 AM</span>
+
+            <div class="chatlog__message " data-message-id="708419623724384316" id="message-708419623724384316">
+                <div class="chatlog__content">
+                    <span class="markdown">詩音用力揍了你一拳，你的嘴角沁出鮮血。
+
+你朝旁邊淬了口唾沫，騎在詩音身上、扇了她一巴掌。
+
+詩音眼前一黑、耳邊不斷傳來轟鳴聲，暫時失去行動能力。</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 04:50 AM</span>
+
+            <div class="chatlog__message " data-message-id="708420501688680492" id="message-708420501688680492">
+                <div class="chatlog__content">
+                    <span class="markdown">嘗試說服</span>
+
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708420507187281963" id="message-708420507187281963">
+                <div class="chatlog__content">
+                    <span class="markdown">!roll 1d100&lt;20</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204777316621090816/a98b0ffa5f0580c62d795d4f21a08c62.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="RPBot#4161" data-user-id="204777316621090816" style="color: #FF35A4">BOT ➲ RPBot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-May-20 04:50 AM</span>
+
+            <div class="chatlog__message " data-message-id="708420508126806056" id="message-708420508126806056">
+                <div class="chatlog__content">
+                    <span class="markdown"><span class="mention" title="weishiau#5350">@weishiau</span> has <strong>failed</strong>. (Rolled 83, not less than 20)</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/342960130159280128/b1518e90e83ee69c3c4fa4be3c7e89a4.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="weishiau#5350" data-user-id="342960130159280128" style="color: #E91010">weishiau</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 05:02 AM</span>
+
+            <div class="chatlog__message " data-message-id="708423648184238202" id="message-708423648184238202">
+                <div class="chatlog__content">
+                    <span class="markdown">!roll 1d100&lt;45</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204777316621090816/a98b0ffa5f0580c62d795d4f21a08c62.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="RPBot#4161" data-user-id="204777316621090816" style="color: #FF35A4">BOT ➲ RPBot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-May-20 05:02 AM</span>
+
+            <div class="chatlog__message " data-message-id="708423649375289456" id="message-708423649375289456">
+                <div class="chatlog__content">
+                    <span class="markdown"><span class="mention" title="weishiau#5350">@weishiau</span> has <strong>succeeded</strong>. (Rolled 38,  less than 45)</span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/208954670129872897/2249dbfbeae6dd4cde9b51569639527e.png" alt="Avatar" />
+    </div>
+    <div class="chatlog__messages">
+    <span class="chatlog__author-name" title="Coyablog#5463" data-user-id="208954670129872897" style="color: #FFD700">Keeper ➲ 伊泉</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 05:03 AM</span>
+
+            <div class="chatlog__message " data-message-id="708423930909556796" id="message-708423930909556796">
+                <div class="chatlog__content">
+                    <span class="markdown">詩音被你說服之後，一直緊握著的拳頭終於放了下來。
+
+事情的經過，就如同你調查出的那些一樣──在睡夢中被親生父親性侵，的確是導致詩因懼怕入眠的原因。
+
+你從夢中醒來，詩音坐在你對面哭得泣不成聲。後來在你的推薦下，詩音住進了郊外某間療養院靜養，這段期間她的狀況確實有在逐漸好轉，再過一陣子應該就能回到家了。
+
+終於，你再度回歸了平靜的日常。
+
+（END）
+
+<strong>存活獎勵：1d4 SAN值回復</strong>
+<strong>完美結局獎勵：說服技能上升 1d10</strong></span>
+
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 148 message(s)</div>
+</div>
+
+</body>
+</html>
